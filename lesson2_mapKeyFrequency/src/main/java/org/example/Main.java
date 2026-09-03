@@ -10,14 +10,11 @@ public class Main {
         System.out.println(answer);
     }
 
-    public static <K> HashMap processArray(List<K> arrayList){
+    public static <K> HashMap processArray(List<K> arrayList) {
         HashMap<K, Integer> hashMap = new HashMap<>();
-        arrayList.forEach(x -> {
-            Integer value = hashMap.getOrDefault(x,0);
-            value+=1;
-            hashMap.put(x, value);
+        for (K element : arrayList) {
+            hashMap.merge(element, 1, Integer::sum);
         }
-        );
         return hashMap;
     }
 }
